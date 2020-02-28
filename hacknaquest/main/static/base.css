@@ -1,0 +1,43 @@
+body{
+    margin: 0px;
+}
+
+/* Makes footer stack to the bottom of page */
+#page-container{
+    min-height: 100vh;
+}
+
+.footer,
+.header{
+    min-height: 50px;
+    height: 5vh;
+    background-color: rgba(36, 20, 73, 0.918);
+    vertical-align: center;
+    color: white
+}
+
+.header{
+    font-size: 30px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.col-3{
+    width: 33%;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 60vh;
+}
