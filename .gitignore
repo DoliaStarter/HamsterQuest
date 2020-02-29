@@ -2,3 +2,7 @@ migrations
 __pycache__
 hack_env
 .vscode
+*.pyproj
+*.sln
+*.user
+/hacknaquest/env
