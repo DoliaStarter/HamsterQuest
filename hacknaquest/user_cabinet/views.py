@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from main.models import SomeQuestModel
-
 # Create your views here.
 
 def index(request):
