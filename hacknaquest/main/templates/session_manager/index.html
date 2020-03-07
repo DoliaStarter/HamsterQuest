@@ -1,2 +1,19 @@
 {% extends "two_col_base.html" %}
 {% load static %}
+
+{%block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "styles/sm_style.css" %}">
+{% endblock %}
+
+{% block left_column %}
+<div class="row-1">
+<button type="button" id="camera">camera</button></br>
+<p id="image_status">Loading...</p></br>
+<input type="text" id="answer" name="answer" value="Answer..."><br><br>
+<button type="button" id="check_answer">check answer</button></br>
+</div>
+<div class="row-1">
+    <p>...</p>
+</div>
+{% endblock %}
+

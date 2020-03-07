@@ -1,0 +1,47 @@
+.col-2{
+  margin: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  height: 85vh;    
+}
+.col-2:nth-child(1){
+  width: 15%;
+}
+.col-2:nth-child(2){
+  width: 85%;
+}
+.row-1{
+  position: relative;
+  margin: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 93%;    
+}
+.row-1:nth-child(1){
+  height: 35%;
+}
+.row-1:nth-child(2){
+  height: 64%;
+}
+#camera{
+  position: relative;
+  left: 30%;
+  margin-top: 5px;
+}
+#image_status{
+  margin: 5px;
+  text-align: left;
+  color: gray;
+}
+#answer{
+  position: relative;
+  margin: 5px;
+  width: 85%;
+  color: gray;
+
+}
+#check_answer{
+  position: relative;
+  margin: 5px;
+  width: 95%;
+}
