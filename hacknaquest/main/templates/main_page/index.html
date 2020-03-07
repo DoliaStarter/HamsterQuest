@@ -3,6 +3,18 @@
 {%block styles %}
 <link rel="stylesheet" type="text/css" href="{% static "styles/main_page.css" %}">
 {% endblock %}
+
+{% block action_buttons %}
+<button>
+    Sign in
+</button>
+<button>
+    Create an account
+</button>
+{% endblock %}
+{% block left_column %}
+Another text
+{% endblock %}
 {%block center %}
 Welcome on page {{ page_name }}.
 {% endblock %}

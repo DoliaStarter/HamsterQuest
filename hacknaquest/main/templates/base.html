@@ -13,10 +13,19 @@
 
 <body>
     <div id="page-container">
-        <div class="header">
-            {% block toolbar %}
-            {{ page_name|capfirst }}
+        <div class="toolbar">
+        {% block toolbar %}
+            <span>{{ page_name|capfirst }}</span>
+            <div class="push">
+            {% comment %}
+             Placeholder, that guarantees that
+             all elements before it will appear at the beggining 
+             of toolbar 
+            {% endcomment %}
+            </div>
+            {% block action_buttons %}
             {% endblock %}
+        {% endblock %}
         </div>
         <div class="container">        
             {% block container %}
