@@ -1,42 +1,26 @@
+{# Defines layout rules (toolbar, container position, etc.), that will be common for all pages.#}
+
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
-    <title>{{ page_name }}</title>
+    <title>{{ page_name|capfirst }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "styles/base.css" %}">
+    {% block styles %}
+    {% endblock %}
 </head>
 
 <body>
     <div id="page-container">
         <div class="header">
-            {% block header %}
-            A basic header
+            {% block toolbar %}
+            {{ page_name|capfirst }}
             {% endblock %}
         </div>
-        <div class="container">
-            <div class="col-3">
-                {% block left_column %}
-                Some important menubar
-                <ul class="option-list">
-                    <li>option-1</li>
-                    <li>option-2</li>
-                </ul>
-                {% endblock %}
-            </div>
-            <div class="col-3">
-                {% block center %} Just some text in the middle {% endblock %}
-            </div>
-            <div class="col-3">
-                {% block right_column %} Oh, it is our right column {% endblock %}
-            </div>
-        </div>
-        <div class="footer">
-            {% block footer %}
+        <div class="container">        
+            {% block container %}
             {% endblock %}
-    </div>
-    
+        </div>
     </div>
 </body>

@@ -1,0 +1,23 @@
+{# Defines rules that will be shared by pages with three columns. #}
+{% extends "base.html" %}
+{% block container %}
+        <div class="col-3">
+        {% block left_column %}
+            Some important menubar
+            <ul class="option-list">
+                <li>option-1</li>
+                <li>option-2</li>
+            </ul>
+        {% endblock %}
+        </div>
+        <div class="col-3">
+        {% block center %} 
+            Just some text in the middle 
+        {% endblock %}
+        </div>
+        <div class="col-3">
+            {% block right_column %} 
+                Oh, it is our right column 
+            {% endblock %}
+        </div>
+{% endblock container %}

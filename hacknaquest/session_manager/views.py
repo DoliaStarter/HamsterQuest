@@ -3,5 +3,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+
 def index(request):
-    return HttpResponse(f"You are in current game manager app.")
+    return render(request, 'session_manager/index.html', {'page_name': "Session manager"})

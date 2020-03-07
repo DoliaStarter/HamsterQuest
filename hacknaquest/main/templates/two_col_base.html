@@ -1,0 +1,14 @@
+{#Defines layout rules that will be shared by pages with two columns#}
+{% extends "base.html" %}
+{% block container %}
+        <div class="col-2">
+        {% block left_column %}
+            Left column.        
+        {% endblock %}
+        </div>
+        <div class="col-2">
+            {% block right_column %} 
+                Oh, it is our right column 
+            {% endblock %}
+        </div>
+{% endblock container %}

@@ -20,8 +20,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='main'),
     path('admin/', admin.site.urls),
-    path('game_cabinet/', include('session_manager.urls')),
+    path('session_manager/', include('session_manager.urls')),
     path('quest_manager/', include('quest_manager.urls')),
-    path('session_manager/', include('session_daemon.urls')),
+    path('session_daemon/', include('session_daemon.urls')),
     path('user_cabinet/', include('user_cabinet.urls'))
 ]
