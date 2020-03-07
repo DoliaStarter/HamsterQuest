@@ -13,8 +13,46 @@
 </button>
 {% endblock %}
 {% block left_column %}
-Another text
+<div class="img-container">
+    <img src="{% static "images/1.svg" %}" alt="" />
+</div>
+<div>
+    <h1>Lorem</h1>
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+    literature from 45 BC, making it over 2000 years old.
+</div>
+
 {% endblock %}
+
 {%block center %}
-Welcome on page {{ page_name }}.
+<div class="img-container">
+    <img src="{% static "images/2.svg" %}" />
+</div>
+<div>
+    <h1>Ipsum</h1>
+    Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
+    words, consectetur, from a Lorem Ipsum passage
+</div>
+
+{% endblock %}
+
+{% block right_column %}
+<div class="img-container">
+    <img src="{% static "images/3.svg" %}" alt="" />
+    <div>
+        <h1>Dolor</h1>
+
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+    </div>
+</div>
+{% endblock %}
+
+{% block plain_content %}
+<div>
+    <h1>About</h1>
+    {{ app_name|capfirst }} allows you to see this world from other side. If you
+    were wondering how to spend this evening good - you found a right place.
+    Already {{ user_count }} players and autohrs in the world.
+</div>
+
 {% endblock %}

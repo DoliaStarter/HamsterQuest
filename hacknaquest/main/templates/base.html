@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <div id="page-container">
         <div class="toolbar">
         {% block toolbar %}
             <span>{{ page_name|capfirst }}</span>
@@ -27,9 +26,15 @@
             {% endblock %}
         {% endblock %}
         </div>
-        <div class="container">        
-            {% block container %}
-            {% endblock %}
+        <div class="container">
+            <div class="columns">
+                {% block columns %}
+                {% endblock %}
+            </div>
+            <div class="plain-content">
+                {% block plain_content %}
+                {% endblock %}
+            </div>        
         </div>
-    </div>
+        
 </body>

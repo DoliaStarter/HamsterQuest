@@ -32,13 +32,15 @@ body{
 }
 
 
-.container{
+.columns{
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 20px;
 }
-
+.col{
+    /* base class for all types of columns */
+}
 .col-3{
     width: 33%;
     margin: 5px;
@@ -58,4 +60,9 @@ body{
 }
 .col-2:nth-child(2){
     width: 70%;
+}
+
+.plain-content{
+    display: block;
+    margin-top: 10px;
 }
