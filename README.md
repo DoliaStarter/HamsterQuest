@@ -24,7 +24,7 @@ login@host:~/hackathon/hacknaquest$ python manage.py runserver
        -`action_buttons` - в нее можна добавлять кнопки для навигации
   
   - `content` - секция в которой находиться содержание страницы. Состоит из блоков:
-  
+ 
       -`columns` - шаблон из колон. В нем находяться блоки:
        
          - `left_column`: - колона которая, будет находиться слева
