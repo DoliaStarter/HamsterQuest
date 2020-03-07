@@ -1,0 +1,17 @@
+form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px auto;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 40px;
+    min-height: 40vh;
+    justify-content: space-evenly;
+}
+
+form [type=submit]{
+    width: 50%;
+    margin: 0 auto;
+}
