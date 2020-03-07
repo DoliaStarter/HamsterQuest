@@ -1,6 +1,6 @@
 {#Defines layout rules that will be shared by pages with two columns#}
 {% extends "base.html" %}
-{% block container %}
+{% block columns %}
         <div class="col-2">
         {% block left_column %}
             Left column.        
@@ -11,4 +11,4 @@
                 Oh, it is our right column 
             {% endblock %}
         </div>
-{% endblock container %}
+{% endblock columns %}

@@ -1,0 +1,71 @@
+{% extends "three_col_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "styles/main_page.css" %}">
+{% endblock %}
+
+{% block action_buttons %}
+<button id="sign_in">
+    Sign in
+</button>
+<button id="create_account">
+    Create an account
+</button>
+{% endblock %}
+{% block left_column %}
+<div class="img-container">
+    <img src="{% static "images/1.svg" %}" alt="" />
+</div>
+<div>
+    <h1>Lorem</h1>
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+    literature from 45 BC, making it over 2000 years old.
+</div>
+
+{% endblock %}
+
+{%block center %}
+<div class="img-container">
+    <img src="{% static "images/2.svg" %}" />
+</div>
+<div>
+    <h1>Ipsum</h1>
+    Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
+    words, consectetur, from a Lorem Ipsum passage
+</div>
+
+{% endblock %}
+
+{% block right_column %}
+<div class="img-container">
+    <img src="{% static "images/3.svg" %}" alt="" />
+    <div>
+        <h1>Dolor</h1>
+
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+    </div>
+</div>
+{% endblock %}
+
+{% block plain_content %}
+<div>
+    <h1>About</h1>
+    {{ app_name|capfirst }} allows you to see this world from other side. If you
+    were wondering how to spend this evening good - you found a right place.
+    Already {{ user_count }} players and autohrs in the world.
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module">
+    import * as CommUtils from "{% static 'scripts/common.js' %}"
+    let redirect_btns = {
+        // btn_id: redirect_url
+        "sign_in": "sign_in",
+        "create_account": "register"
+    }
+    for(let [btn_id, url] of Object.entries(redirect_btns)){
+        document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
+    }
+</script>
+{% endblock %}

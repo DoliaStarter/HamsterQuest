@@ -2,54 +2,59 @@ body{
     margin: 0px;
 }
 
-/* Makes footer stack to the bottom of page */
-#page-container{
-    min-height: 100vh;
-}
-
-.footer,
-.header{
+.toolbar{
+    font-size: 30px;
     min-height: 50px;
     height: 5vh;
     background-color: rgba(36, 20, 73, 0.918);
     vertical-align: center;
-    color: white
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.toolbar .push{
+    margin-left: auto;
+}
+.toolbar button{
+    background-color: rgba(47, 91, 121, 0.815);
+    border-radius: 0px;
+    border: none;
+    border-left: 1px solid blanchedalmond;
+    color: white;
+    font-size: 18px;
+    padding: 0px 30px;
+    vertical-align: center;
+    text-align: center;
+}
+.toolbar button:hover{
+    background-color: rgba(13, 58, 58, 0.644);
 }
 
-.header{
-    font-size: 30px;
-}
-
-.footer{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
-
-.container{
+.columns{
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 20px;
 }
-
+.col{
+    /* base class for all types of columns */
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 5px;
+}
 .col-3{
     width: 33%;
-    margin: 5px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    height: 60vh;
 }
 
-.col-2{
-    margin: 5px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    height: 60vh;    
-}
 .col-2:nth-child(1){
     width: 25%;
 }
 .col-2:nth-child(2){
     width: 70%;
+}
+
+.plain-content{
+    display: block;
+    margin-top: 10px;
 }
