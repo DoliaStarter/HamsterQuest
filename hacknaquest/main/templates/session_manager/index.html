@@ -13,7 +13,30 @@
 <button type="button" id="check_answer">check answer</button></br>
 </div>
 <div class="row-1">
-    <p>...</p>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Task')" id="defaultOpen">Task</button>
+        <button class="tablinks" onclick="openTab(event, 'Staus')">Staus</button>
+        <button class="tablinks" onclick="openTab(event, 'Stages')">Stages</button>
+      </div>
+
+      <div id="Task" class="tabcontent">
+        <h3>Task</h3>
+        <p>Do it</p>
+      </div>
+      
+      <div id="Staus" class="tabcontent">
+        <h3>Staus</h3>
+        <p>Did it</p>
+      </div>
+      
+      <div id="Stages" class="tabcontent">
+        <h3>Stages</h3>
+        <p>Will do it</p>
+      </div>
+
 </div>
+{% endblock %}
+{%block scripts %}
+<script src="{% static "scripts/sm_script.js" %}"></script>  
 {% endblock %}
 
