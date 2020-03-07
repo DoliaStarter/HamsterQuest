@@ -1,14 +1,14 @@
 {% extends "three_col_base.html" %}
 {% load static %}
-{%block styles %}
+{% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static "styles/main_page.css" %}">
 {% endblock %}
 
 {% block action_buttons %}
-<button>
+<button id="sign_in">
     Sign in
 </button>
-<button>
+<button id="create_account">
     Create an account
 </button>
 {% endblock %}
@@ -54,5 +54,18 @@
     were wondering how to spend this evening good - you found a right place.
     Already {{ user_count }} players and autohrs in the world.
 </div>
+{% endblock %}
 
+{% block scripts %}
+<script type="module">
+    import * as CommUtils from "{% static 'scripts/common.js' %}"
+    let redirect_btns = {
+        // btn_id: redirect_url
+        "sign_in": "sign_in",
+        "create_account": "register"
+    }
+    for(let [btn_id, url] of Object.entries(redirect_btns)){
+        document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
+    }
+</script>
 {% endblock %}

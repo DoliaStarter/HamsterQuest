@@ -27,14 +27,18 @@
         {% endblock %}
         </div>
         <div class="container">
+        {% block content %}
             <div class="columns">
                 {% block columns %}
-                {% endblock %}
+                {% endblock columns %}
             </div>
             <div class="plain-content">
                 {% block plain_content %}
-                {% endblock %}
-            </div>        
+                {% endblock plain_content%}
+            </div>
+        {% endblock content %}        
         </div>
+    {% block scripts %}
+    {% endblock %}
         
 </body>
