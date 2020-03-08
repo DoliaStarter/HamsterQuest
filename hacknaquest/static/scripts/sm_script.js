@@ -2,7 +2,6 @@
 // Method, that will switch between tabs.
 
 function openTab(evt, tabName) {
-  console.log(evt)
   // Declare all variables
   var i, tabcontent, tablinks;
 
