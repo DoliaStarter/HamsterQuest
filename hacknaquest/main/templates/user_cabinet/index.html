@@ -1,2 +1,31 @@
 {% extends "two_col_base.html" %}
 {% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "styles/user_cabinet.css"%}">
+{% endblock %}
+
+
+{% block left_column %}
+<div>
+    <button id="search_quests">Search Quests</button><br>
+    <button id="your_quests">Your Quests</button><br>
+    <button id="options">Options</button><br>
+    <button id="log_out">Log Out</button><br>
+</div>
+{% endblock %}
+
+
+{% block right_column %}
+<div id="exp_bars">
+
+</div>
+<div id="profile_image">
+
+
+</div>
+<div id="achievements">
+
+
+</div>
+{% endblock %}
