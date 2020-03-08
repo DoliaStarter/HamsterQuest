@@ -1,0 +1,12 @@
+.col-2:nth-child(2) {
+    width: 80%;
+}
+
+.uc_buttons {
+    text-align: center;
+    align: left;
+}
+
+#profile_image {
+    border-radius: 50%;
+}

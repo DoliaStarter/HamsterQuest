@@ -7,11 +7,11 @@
 
 
 {% block left_column %}
-<div>
-    <button id="search_quests">Search Quests</button><br>
-    <button id="your_quests">Your Quests</button><br>
-    <button id="options">Options</button><br>
-    <button id="log_out">Log Out</button><br>
+<div class="uc_buttons">
+    <button id="search_quests">Search Quests</button><br/>
+    <button id="your_quests">Your Quests</button><br/>
+    <button id="options">Options</button><br/>
+    <button id="log_out">Log Out</button><br/>
 </div>
 {% endblock %}
 
@@ -20,8 +20,8 @@
 <div id="exp_bars">
 
 </div>
-<div id="profile_image">
-
+<div>
+<img  id="profile_image" alt="" src="{% static "images/profile_image.jpg" %}" />
 
 </div>
 <div id="achievements">
