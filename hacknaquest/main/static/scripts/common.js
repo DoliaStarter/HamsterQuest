@@ -11,4 +11,6 @@ function redirect(to){
     window.location.replace(to)
 }
 
-export {redirect};
+function openTab(){}
+
+export {redirect, openTab};

@@ -2,13 +2,14 @@ form{
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     width: 30%;
     margin: 20px auto;
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 40px;
     min-height: 40vh;
-    justify-content: space-evenly;
+    
 }
 
 form [type=submit]{

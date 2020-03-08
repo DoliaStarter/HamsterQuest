@@ -4,13 +4,15 @@
 {%block styles %}
 <link rel="stylesheet" type="text/css" href="{% static "styles/sm_style.css" %}">
 {% endblock %}
-
 {% block left_column %}
+{% comment %} 
+Form instead of div. 
+{% endcomment %}
 <div class="row-1">
-<button type="button" id="camera">camera</button></br>
-<p id="image_status">Loading...</p></br>
-<input type="text" id="answer" name="answer" value="Answer..."><br><br>
-<button type="button" id="check_answer">check answer</button></br>
+<button type="button" id="camera">camera</button>
+<p id="image_status">Loading...</p>
+<input type="text" id="answer" name="answer" placeholder  ="Answer...">
+<button type="button" id="check_answer">check answer</button>
 </div>
 <div class="row-1">
     <div class="tab">
@@ -37,6 +39,7 @@
 </div>
 {% endblock %}
 {%block scripts %}
+{% comment %} Packages {% endcomment %}
 <script src="{% static "scripts/sm_script.js" %}"></script>  
 {% endblock %}
 

@@ -15,3 +15,5 @@ class SignInForm(forms.Form):
     login = forms.CharField(label="Login",
                             max_length=100)
     passwd = forms.CharField(widget=forms.PasswordInput)
+
+

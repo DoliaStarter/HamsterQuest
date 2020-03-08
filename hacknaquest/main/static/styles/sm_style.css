@@ -15,18 +15,24 @@
   margin: 5px;
   border: 1px solid lightgray;
   border-radius: 5px;
-  width: 93%;    
+  /* width: 93%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
 }
-.row-1:nth-child(1){
+/* .row-1:nth-child(1){
   height: 35%;
 }
 .row-1:nth-child(2){
   height: 61%;
-}
+} */
 #camera{
-  position: relative;
-  left: 30%;
-  margin-top: 5px;
+  /* position: relative;
+  /* left: 30%; */
+  width: 50%;
+  margin: 5px auto;
+  /* margin-top: 5px; */
 }
 #image_status{
   margin: 5px;
@@ -40,6 +46,7 @@
   color: gray;
 
 }
+/* Change it on margins/paddings */
 #check_answer{
   position: relative;
   margin: 5px;
