@@ -4,9 +4,105 @@
 
 .uc_buttons {
     text-align: center;
-    align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 650px;
+}
+
+.but {
+    font-size: 30px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+#right_col{
+    display: flex;
+    flex-direction: column;
+}
+
+#profile_and_bars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    float: right;
+}
+
+#exp_bars_container {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#nickname{
+    font-size: 30px;
+    margin: 10px;
+    text-align: right;
+}
+
+#lvl{
+    font-size: 20px;
+}
+
+#player_bar {
+    width: 500px;
+    height: 30px;
+}
+
+#creator_bar {
+
+    width: 500px;
+    height: 30px;
 }
 
 #profile_image {
     border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    float: right;
+    margin: 50px;
 }
+
+#achievements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#player_achievements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+}
+
+#creator_achievements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+
+}
+
+.not_completed {
+    filter: saturate(0.001);
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+.completed {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+

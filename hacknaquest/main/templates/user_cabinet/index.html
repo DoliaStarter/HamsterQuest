@@ -2,30 +2,72 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static "styles/user_cabinet.css"%}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/user_cabinet.css'%}">
 {% endblock %}
 
 
 {% block left_column %}
 <div class="uc_buttons">
-    <button id="search_quests">Search Quests</button><br/>
-    <button id="your_quests">Your Quests</button><br/>
-    <button id="options">Options</button><br/>
-    <button id="log_out">Log Out</button><br/>
+    <button class="but" id="search_quests">Search Quests</button>
+    <button class="but" id="your_quests">Your Quests</button>
+    <button class="but" id="options">Options</button>
+    <button class="but" id="log_out">Log Out</button>
 </div>
 {% endblock %}
 
 
 {% block right_column %}
-<div id="exp_bars">
+<div id="right_col">
+    <div id="profile_and_bars">
+        <div id="exp_bars_container">
+            <p>Player Exp Bar</p>
+            <progress id="player_bar" max="100" value="80"></progress>
+            <p>Creator Exp Bar</p>
+            <progress id="creator_bar" max="100" value="30"></progress>
+        </div>
+        <div>
+            <p id="nickname"><b>Nickname</b></p>
+            <p id="lvl">level: n</p>
+        </div>
+        <div><img id="profile_image" alt="" src="{% static 'images/profile_image.jpg' %}"/></div>
+    </div>
 
+    <div id="achievements">
+
+        <h2>Player Achievements</h2>
+        <div id="player_achievements">
+            <img id="ach1" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="ach2" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="ach3" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="ach4" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="ach5" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+        </div>
+
+        <h2>Creator Achievements</h2>
+        <div id="creator_achievements">
+            <img id="cach1" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="cach2" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="cach3" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="cach4" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+            <img id="cach5" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
+        </div>
+
+    </div>
 </div>
-<div>
-<img  id="profile_image" alt="" src="{% static "images/profile_image.jpg" %}" />
-
-</div>
-<div id="achievements">
+{% endblock %}
 
 
-</div>
+{% block scripts %}
+<script type="module">
+    import * as CommUtils from "{% static 'scripts/common.js' %}"
+
+    let redirect_btns = {};
+    for (let [btn_id, url] of Object.entries(redirect_btns)) {
+        document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
+    }
+
+    import * as ucUtils from "{% static 'scripts/user_cabinet/index.js' %}"
+
+    document.body.onload = (_) => ucUtils.uc_init();
+</script>
 {% endblock %}
