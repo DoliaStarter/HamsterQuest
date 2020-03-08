@@ -9,6 +9,7 @@ pip install -r requirements.txt
 
 # Запуск
 Для того что бы все работало нужен доступ в интернет
+
 Чтобы запустить 
 ```
 login@host:$ git clone https://github.com/DoliaStarter/HamsterQuest.git hackathon
