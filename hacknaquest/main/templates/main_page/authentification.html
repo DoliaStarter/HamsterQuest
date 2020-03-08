@@ -7,10 +7,15 @@
 {% endblock %}
 
 {% block content %}
+{% if failed %}
+<div class="alert">
+    Wrong password or login! 
+</div>
+{% endif %}
 <form action="{{ action }}" method="POST">
-    <h2>Create an account</h2>
+    <h2>{{ form.action|capfirst }}</h2>
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Register">
+    <input type="submit" value="{{ form.action|capfirst }}">
 </form>
 {% endblock content %}

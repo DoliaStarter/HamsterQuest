@@ -15,3 +15,15 @@ form [type=submit]{
     width: 50%;
     margin: 0 auto;
 }
+
+.alert{
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px solid darkred;
+    background-color: rgba(184, 8, 8, 0.397);
+    width: 40%;
+    margin: 10px auto;
+    border-radius: 5px;
+
+}

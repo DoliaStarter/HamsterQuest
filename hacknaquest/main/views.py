@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, SignInForm
 
 
 # Create your views here.
@@ -25,8 +25,16 @@ def register(request):
 
 
 def sign_in(request):
+    failed = False
     if request.method == 'POST':
-        return HttpResponseRedirect('user_cabinet/')
-    context = {'form': RegistrationForm(),
-               'action': request.build_absolute_uri()}
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            if data['passwd'] == '123':
+                return HttpResponseRedirect('user_cabinet/')
+            else:
+                failed = True
+    context = {'form': SignInForm(),
+               'action': request.build_absolute_uri(),
+               'failed': failed}
     return render(request, 'main_page/authentification.html', context)
