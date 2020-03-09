@@ -1,7 +1,7 @@
 {% extends "three_col_base.html" %}
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static "styles/main_page.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "styles/main_page/main_page.css" %}">
 {% endblock %}
 
 {% block action_buttons %}
@@ -64,6 +64,7 @@
         "sign_in": "sign_in",
         "create_account": "register"
     }
+
     for(let [btn_id, url] of Object.entries(redirect_btns)){
         document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
     }
