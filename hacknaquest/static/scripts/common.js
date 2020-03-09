@@ -11,6 +11,13 @@ function redirect(to){
     window.location.replace(to)
 }
 
-function openTab(){}
+/**
+ * Shostcut to document.getElementById 
+ * @param {string} element_id 
+ * @returns Same as document.getElementById
+ */
+function $(element_id){
+    return document.getElementById(element_id)
+}
 
-export {redirect, openTab};
+export {redirect, $};
