@@ -1,6 +1,6 @@
 # HamsterQuest
 # Фичи в common.js
-# $
+## $
 Тепeрь вместо каждый раз писать 
 
 ```javascript
@@ -11,7 +11,7 @@ document.getElemendById(ID)
 ```javascript
 $(ID)
 ```
-# redirect
+## redirect
 Перенаправляет пользователя на поданый адрес
 
 # Зависимости
