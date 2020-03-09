@@ -1,4 +1,18 @@
 # HamsterQuest
+# Фичи в common.js
+# $
+Тепeрь вместо каждый раз писать 
+
+```javascript
+document.getElemendById(ID)
+```
+можем
+
+```javascript
+$(ID)
+```
+# redirect
+Перенаправляет пользователя на поданый адрес
 
 # Зависимости
 Чтобы установить все зависимости.
