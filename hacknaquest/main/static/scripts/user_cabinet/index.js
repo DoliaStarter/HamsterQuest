@@ -6,9 +6,10 @@ let uc_variables = {
 };
 
 function uc_init() {
+    //set profile_image
     let profile_image = document.getElementById("profile_image");
     profile_image.src = uc_variables.profile_image_src;
-    console.log("hi");
+    //set achievements
     let userAchievements = document.getElementById("player_achievements").childNodes;
     for (let i = 1; i < userAchievements.length; i += 2) {
         if (uc_variables.user_achievements[(i+1)/2-1] === "1") {
@@ -23,6 +24,10 @@ function uc_init() {
             creatorAchievements[i].classList.add('completed');
         }
     }
+    //set nickname
+    let nickname = document.getElementById("nickname");
+    nickname.innerText = uc_variables.nickname;
+
 
 }
 

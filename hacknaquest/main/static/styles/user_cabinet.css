@@ -1,5 +1,52 @@
+body {
+    color: #23343b;
+    background-color: white;
+}
+
 .col-2:nth-child(2) {
     width: 80%;
+}
+
+.toolbar button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    padding: 0px 30px;
+    border-radius: 0px;
+    border: none;
+
+}
+
+.toolbar button:hover {
+    background-color: rgba(47, 91, 121, 0.815);
+    border-radius: 0px;
+    border: none;
+    border-left: 1px solid blanchedalmond;
+    color: white;
+    font-size: 18px;
+    padding: 0px 30px;
+    vertical-align: center;
+    text-align: center;
+}
+
+#left_col {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+#active_quest{
+    width: 450px;
+    height: 580px;
+    border-radius: 30px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
+    margin: 10px;
 }
 
 .uc_buttons {
@@ -7,10 +54,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 650px;
+    /*height: 300px;*/
+    border-radius: 30px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
 }
 
 .but {
+
     font-size: 30px;
     background-color: Transparent;
     background-repeat: no-repeat;
@@ -22,7 +73,7 @@
     margin: 10px;
 }
 
-#right_col{
+#right_col {
     display: flex;
     flex-direction: column;
 }
@@ -39,27 +90,53 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    border-radius: 30px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
 }
 
-#nickname{
-    font-size: 30px;
+#nickname {
+    font-size: 40px;
     margin: 10px;
     text-align: right;
+    font-weight: bold;
 }
 
-#lvl{
+.lvl {
     font-size: 20px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 20px;
 }
 
 #player_bar {
     width: 500px;
     height: 30px;
+    margin: 20px;
 }
 
 #creator_bar {
 
     width: 500px;
     height: 30px;
+    margin: 20px;
+}
+
+#player_info {
+    border-radius: 30px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #profile_image {
@@ -83,6 +160,10 @@
     flex-direction: row;
     justify-content: space-evenly;
     margin: 30px;
+    border-radius: 30px;
+    background-color: white;
+
+    border: 1px solid #e1e1e1;
 }
 
 #creator_achievements {
@@ -90,6 +171,9 @@
     flex-direction: row;
     justify-content: space-evenly;
     margin: 30px;
+    border-radius: 30px;
+    border: 1px solid #e1e1e1;
+    background-color: white;
 
 }
 

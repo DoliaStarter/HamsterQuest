@@ -6,12 +6,29 @@
 {% endblock %}
 
 
+{% block action_buttons %}
+<button id="search_quests">Search Quests</button>
+<button id="my_quests">My Quests</button>
+<button id="user_cabinet">User Cabinet</button>
+
+{% endblock %}
+
+
 {% block left_column %}
-<div class="uc_buttons">
-    <button class="but" id="search_quests">Search Quests</button>
-    <button class="but" id="your_quests">Your Quests</button>
-    <button class="but" id="options">Options</button>
-    <button class="but" id="log_out">Log Out</button>
+<div id="left_col">
+    <div id="active_quest">
+        <h1 align="center">INFO</h1>
+        <h1 align="center">ABOUT</h1>
+        <h1 align="center">ACTIVE</h1>
+        <h1 align="center"> QUEST</h1>
+    </div>
+
+    <div class="uc_buttons">
+        <button class="but" id="change_info">Change info</button>
+        <button class="but" id="change_password">Change Password</button>
+        <button class="but" id="log_out">Log Out</button>
+    </div>
+
 </div>
 {% endblock %}
 
@@ -20,16 +37,19 @@
 <div id="right_col">
     <div id="profile_and_bars">
         <div id="exp_bars_container">
-            <p>Player Exp Bar</p>
+            <h2>Player Exp Bar</h2>
             <progress id="player_bar" max="100" value="80"></progress>
-            <p>Creator Exp Bar</p>
+            <h2>Creator Exp Bar</h2>
             <progress id="creator_bar" max="100" value="30"></progress>
         </div>
-        <div>
-            <p id="nickname"><b>Nickname</b></p>
-            <p id="lvl">level: n</p>
+        <div id="player_info">
+            <div id="info">
+                <p id="nickname"><b>Nickname</b></p>
+                <p class="lvl">LEVEL:</p>
+                <p class="lvl">CITY:</p>
+            </div>
+            <div><img id="profile_image" alt="" src="{% static 'images/profile_image.jpg' %}"/></div>
         </div>
-        <div><img id="profile_image" alt="" src="{% static 'images/profile_image.jpg' %}"/></div>
     </div>
 
     <div id="achievements">
@@ -59,15 +79,20 @@
 
 {% block scripts %}
 <script type="module">
+    import * as ucUtils from "{% static 'scripts/user_cabinet/index.js' %}"
+
+    document.body.onload = (_) => ucUtils.uc_init();
     import * as CommUtils from "{% static 'scripts/common.js' %}"
 
-    let redirect_btns = {};
+    let redirect_btns = {
+        // btn_id: redirect_url
+        "search_quests": "",
+        // "search_quests": ""
+    };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
         document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
     }
 
-    import * as ucUtils from "{% static 'scripts/user_cabinet/index.js' %}"
 
-    document.body.onload = (_) => ucUtils.uc_init();
 </script>
 {% endblock %}
