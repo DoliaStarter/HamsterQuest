@@ -1,0 +1,25 @@
+.col-3:nth-child(2){
+    flex-grow: 3;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+form *{
+    margin: auto;
+    display: block;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.option-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.option-buttons button{
+    padding: 5px;
+    background-color: inherit;
+    border-radius: 5px;
+}
