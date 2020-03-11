@@ -6,6 +6,7 @@ from .models import UserProfile
 
 # Create your views here.
 
+
 def index(request):
     # later it will be a request to database.
     user_count = 1_000_000
@@ -16,37 +17,26 @@ def index(request):
 
 
 def register(request):
-    
 
     context = {'form': RegistrationForm(),
-               'action': request.build_absolute_uri()} 
+               'action': request.build_absolute_uri()}
     print(context)
     if request.method == 'POST':
-        user_form=RegistrationForm(data=request.POST)
+        user_form = RegistrationForm(data=request.POST)
         if user_form.is_valid():
-            user= user_form.save()
+            user = user_form.save()
             user.set_password(user.password)
             user.save()
 
-            user_profile=UserProfile()
-            user_profile.author_rating=0
-            user_profile.player_rating=0
-            user_profile.user=user
+            user_profile = UserProfile()
+            user_profile.author_rating = 0
+            user_profile.player_rating = 0
+            user_profile.user = user
             user_profile.save()
 
-            
             return HttpResponseRedirect('user_cabinet/')
         else:
             print(user_form.errors)
-
-    
-
-
-         
-
-            
-       
-
     return render(request, 'main_page/authentification.html', context)
 
 
@@ -63,8 +53,8 @@ def sign_in(request):
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('user_cabinet/')
-            else:  
-                print ("так сказатб парольб неправельный")
+            else:
+                print("так сказатб парольб неправельный")
                 return HttpResponse("Invalid login details supplied.")
     context = {'form': SignInForm(),
                'action': request.build_absolute_uri(),

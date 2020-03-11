@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # Config to access cloud postgres database
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql',
 #        'NAME': 'evqdpnii',
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 #        'HOST': 'dumbo.db.elephantsql.com',
 #        'PORT': '5432',
 #    }
-#}
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

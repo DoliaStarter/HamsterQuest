@@ -8,9 +8,8 @@
 
 {% block action_buttons %}
 <button id="search_quests">Search Quests</button>
-<button id="my_quests">My Quests</button>
-<button id="user_cabinet">User Cabinet</button>
-
+<button id="current_game">Current game</button>
+<button id="create_quest">Create quest</button>
 {% endblock %}
 
 
@@ -20,7 +19,7 @@
         <h1 align="center">INFO</h1>
         <h1 align="center">ABOUT</h1>
         <h1 align="center">ACTIVE</h1>
-        <h1 align="center"> QUEST</h1>
+        <h1 align="center">MY QUESTS</h1>
     </div>
 
     <div class="uc_buttons">
@@ -82,15 +81,15 @@
     import * as ucUtils from "{% static 'scripts/user_cabinet/index.js' %}"
 
     document.body.onload = (_) => ucUtils.uc_init();
-    import * as CommUtils from "{% static 'scripts/common.js' %}"
+    import {redirect, $} from "{% static 'scripts/common.js' %}"
 
     let redirect_btns = {
         // btn_id: redirect_url
-        "search_quests": "",
-        // "search_quests": ""
+        "current_game":"../session_manager",
+        "create_quest":"../quest_manager"
     };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
-        document.getElementById(btn_id).onclick = (_) => CommUtils.redirect(url)
+        $(btn_id).onclick = (_) => redirect(url)
     }
 
 

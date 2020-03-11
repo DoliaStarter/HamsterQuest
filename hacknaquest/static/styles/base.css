@@ -44,8 +44,8 @@ body {
     margin: 5px;
 }
 .col-3{
-    /* width: 33%; */
-    flex-grow: 1;
+    width: 33%;
+    /* flex-grow: 1; */
 }
 
 .col-2:nth-child(1){
