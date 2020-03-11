@@ -1,15 +1,15 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-
+from django.contrib.auth.models import User
 # If no primary key doesn't specified in model,
 # it means, that this field was added b default by django
 # with name 'id' and type Serial.
 
 
-class Users(models.Model):
-    name = models.CharField(max_length=100,
-                            blank=False)
-
+class UserProfile(models.Model):
+   
+   
+  
     author_rating = models.IntegerField(default=0,
                                         validators=[MinValueValidator(0)],
                                         help_text="Rating of user based on quests he authored")
@@ -17,11 +17,14 @@ class Users(models.Model):
     player_rating = models.IntegerField(default=0,
                                         validators=[MinValueValidator(0)],
                                         help_text="Rating of user based on quests he played")
+  
+    user=models.OneToOneField(User,models.CASCADE)
+ 
 
 
 class Quests(models.Model):
 
-    author_id = models.ForeignKey(to=Users,
+    author_id = models.ForeignKey(to=UserProfile,
                                   on_delete=models.SET_NULL,
                                   to_field='id',
                                   null=True)
@@ -30,7 +33,7 @@ class Quests(models.Model):
 
 
 class Sessions(models.Model):
-    player_id = models.ForeignKey(to=Users,
+    player_id = models.ForeignKey(to=UserProfile,
                                   on_delete=models.CASCADE,
                                   to_field='id')
     quest_id = models.ForeignKey(to=Quests,
@@ -77,3 +80,6 @@ class Tags(models.Model):
                                  to_field='id')
     tag_name = models.CharField(max_length=100,
                                 blank=False)
+
+
+
