@@ -32,13 +32,18 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main'
+<<<<<<< HEAD
 ]
+=======
+    ]
+>>>>>>> master
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +60,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +81,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Config to access cloud postgres database
 
 # DATABASES = {
+<<<<<<< HEAD
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'evqdpnii',
@@ -90,6 +96,21 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+=======
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'evqdpnii',
+#        'USER': 'evqdpnii',
+#        'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
+#        'HOST': 'dumbo.db.elephantsql.com',
+#        'PORT': '5432',
+#    }
+# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+>>>>>>> master
     }
 }
 
@@ -129,5 +150,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATICFILES_DIRS = ["static"]
 STATIC_URL = '/static/'

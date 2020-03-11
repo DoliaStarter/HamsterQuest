@@ -1,0 +1,66 @@
+{% extends "three_col_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "styles/quest_manager/style.css" %}">
+{% endblock %}
+{% block action_buttons %}
+<button id="user_cabinet">User cabinet</button>
+{% endblock %}
+
+{% block left_column %}
+<form id="quest_form">
+        {{ quest_form }}
+        <button>
+            Save quest
+        </button>
+</form>
+{% endblock %}
+{% block right_column %}
+<form id="stage_description">
+        {{ stage_form }}
+    <button>
+        Add next stage
+    </button>    
+
+</form>
+<div class="option-buttons">
+    <button>
+        Delete current stage
+    </button>
+    <button>
+        Save current stage
+    </button>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="module">
+    import {Quest} from "{% static 'scripts/quest_manager/quest.js' %}"
+    import {$} from "{% static 'scripts/common.js' %}"
+    import * as Utils from "{% static 'scripts/common.js' %}"
+     let redirect_btns = {
+        "user_cabinet":"../user_cabinet"
+    };
+    for (let [btn_id, url] of Object.entries(redirect_btns)) {
+        $(btn_id).onclick = (_) => Utils.redirect(url)
+    }
+
+    let quest = new Quest()
+
+    $("stage_description").onsubmit = (e) => {
+        e.preventDefault()
+        let form = e.target
+        let data = Utils.formToDict(form)
+        quest.addStage(data)
+        form.reset()
+    }
+
+    $("quest_form").onsubmit = (e) => {
+        e.preventDefault()
+        let form = e.target
+        let data = Utils.formToDict(form)
+        quest.addDescription(data)
+        quest.send()
+        }
+</script>
+{% endblock %}
+

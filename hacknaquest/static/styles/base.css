@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0px;
 }
 
@@ -45,6 +45,7 @@ body{
 }
 .col-3{
     width: 33%;
+    /* flex-grow: 1; */
 }
 
 .col-2:nth-child(1){
