@@ -1,6 +1,7 @@
 // Cool, but you can make it generic !
 // Method, that will switch between tabs.
 
+
 function openTab(evt, tabName) {
   // Declare all variables
   var i, tabcontent, tablinks;

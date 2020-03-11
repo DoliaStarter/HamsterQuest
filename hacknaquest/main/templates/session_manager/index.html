@@ -2,18 +2,26 @@
 {% load static %}
 
 {%block styles %}
-<link rel="stylesheet" type="text/css" href="{% static "styles/sm_style.css" %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+<style>
+  .map {
+    height: 400px;
+    width: 100%;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/sm_style.css' %}">
 {% endblock %}
 {% block left_column %}
-{% comment %} 
-Form instead of div. 
-{% endcomment %}
+
 <div class="row-1">
-<button type="button" id="camera">camera</button>
-<p id="image_status">Loading...</p>
-<input type="text" id="answer" name="answer" placeholder  ="Answer...">
-<button type="button" id="check_answer">check answer</button>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button id="check_answer" type="submit">Submit</button>
+    </form>
 </div>
+ 
 <div class="row-1">
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Task')" id="defaultOpen">Task</button>
@@ -35,11 +43,29 @@ Form instead of div.
         <h3>Stages</h3>
         <p>Will do it</p>
       </div>
-
 </div>
+
+{% endblock left_column %}
+
+{% block right_column %} 
+<div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([19.9365800,  50.0614300]),
+          zoom: 10
+        })
+      });
+    </script>
 {% endblock %}
 {%block scripts %}
 {% comment %} Packages {% endcomment %}
-<script src="{% static "scripts/sm_script.js" %}"></script>  
+<script src="{% static 'scripts/sm_script.js' %}"></script>  
 {% endblock %}
 

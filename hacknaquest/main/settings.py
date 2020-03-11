@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'    
-    ]
+    'main'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,14 +75,21 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # Config to access cloud postgres database
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'evqdpnii',
+#         'USER': 'evqdpnii',
+#         'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
+#         'HOST': 'dumbo.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'evqdpnii',
-        'USER': 'evqdpnii',
-        'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
-        'HOST': 'dumbo.db.elephantsql.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 

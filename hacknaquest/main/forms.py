@@ -17,3 +17,7 @@ class SignInForm(forms.Form):
     passwd = forms.CharField(widget=forms.PasswordInput)
 
 
+class SessionManagerMainForm(forms.Form):    
+    photo = forms.ImageField(label='') #widget=forms.ImageField(attrs={'id': 'photo'}))
+    answer = forms.CharField(label='', max_length=100,
+                        widget=forms.TextInput(attrs={'id': 'answer', 'placeholder': 'Answer...'}))
