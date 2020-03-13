@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'styles/sm_style.css' %}">
 {% endblock %}
+
 {% block action_buttons %}
 <button id="user_cabinet">User cabinet</button>
 {% endblock %}
@@ -24,7 +25,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form }}
-        <button id="check_answer" type="submit">Submit</button>
+        <button id="check_answer" >Submit</button> type="submit"
     </form>
 </div>
  
@@ -71,10 +72,13 @@
     </script>
 {% endblock %}
 {%block scripts %}
-{% comment %} Packages {% endcomment %}
-<script src="{% static "scripts/sm_script.js" %}"></script>
+<script src="{% static "scripts/session_manager/sm_script.js" %}"></script>
 <script type="module">
-import {redirect, $} from "{% static 'scripts/common.js' %}"
+
+import {redirect} from "{% static 'scripts/common.js' %}"
+import {Answer} from "{% static 'scripts/session_manager/answer.js' %}"
+import {$} from "{% static 'scripts/common.js' %}"
+import * as Utils from "{% static 'scripts/common.js' %}"
     let redirect_btns = {
         // btn_id: redirect_url
         "user_cabinet":"../user_cabinet"
@@ -82,7 +86,15 @@ import {redirect, $} from "{% static 'scripts/common.js' %}"
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
         $(btn_id).onclick = (_) => redirect(url)
     }
-</script>  
+    let answer = new Answer()
 
+    $("check_answer").onsubmit = (e) => {
+        e.preventDefault()
+        let form = e.target
+        let data = Utils.formToDict(form)
+        answer.send()
+        }
+
+</script>  
 {% endblock %}
 
