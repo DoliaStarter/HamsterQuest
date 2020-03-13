@@ -17,7 +17,9 @@ class UserProfile(models.Model):
                                         help_text="Rating of user based on quests he played")
 
     user = models.OneToOneField(User, models.CASCADE)
-
+    
+    def __unicode__(self):
+         return "username="+self.user.username+", player_rating="+str(self.player_rating)+", author_rating="+str(self.author_rating)
 
 class Quests(models.Model):
 
@@ -25,6 +27,10 @@ class Quests(models.Model):
                                   on_delete=models.SET_NULL,
                                   to_field='id',
                                   null=True)
+    title=models.CharField(max_length=255,
+                                      blank=False)
+
+    player_amount=models.IntegerField(blank=False,default=5)
     description = models.TextField(blank=True,
                                    help_text='Describe current quest')
 
@@ -56,16 +62,22 @@ class Stages(models.Model):
                                        on_delete=models.SET_NULL,
                                        to_field='id',
                                        null=True)
+
+    title=models.CharField(max_length=255,
+                                      blank=False)
     latitude = models.DecimalField(max_digits=15,
-                                   decimal_places=12)
+                                   decimal_places=12,null=True,blank=True)
 
     longitude = models.DecimalField(max_digits=15,
-                                    decimal_places=12)
+                                    decimal_places=12,null=True,blank=True)
 
     type_of_answer = models.CharField(max_length=100,
                                       blank=False)
 
     answer = models.CharField(max_length=255,
+                              blank=False)
+
+    task = models.CharField(max_length=255,
                               blank=False)
 
     description = models.TextField(blank=False)
