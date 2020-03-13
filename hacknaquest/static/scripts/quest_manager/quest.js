@@ -28,6 +28,7 @@ class Quest {
      */
     pack() {
         let packed_data = {
+            "quest_id": null,
             "creator": this.author,
             "quest_data": this.description,
             "stage_data": []
