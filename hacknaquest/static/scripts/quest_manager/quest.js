@@ -1,10 +1,11 @@
 import { Stage } from "../quest_manager/stage.js"
 import { sendRequest } from "../common.js"
 class Quest {
-    constructor() {
+    constructor(author) {
         this.stages = []
         this.current_stage_id = null
         this.description = null
+        this.author = author
     }
     /**
      * Add's description to current quest.
@@ -27,6 +28,7 @@ class Quest {
      */
     pack() {
         let packed_data = {
+            "creator": this.author,
             "quest_data": this.description,
             "stage_data": []
         }
