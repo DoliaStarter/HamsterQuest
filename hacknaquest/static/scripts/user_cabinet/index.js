@@ -5,7 +5,7 @@ let uc_variables = {
     creator_achievements: "01000"
 };
 
-function uc_init() {
+function uc_init() {o
     //set profile_image
     let profile_image = document.getElementById("profile_image");
     profile_image.src = uc_variables.profile_image_src;

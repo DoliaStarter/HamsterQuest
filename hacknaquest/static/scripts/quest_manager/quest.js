@@ -2,8 +2,8 @@ import { Stage } from "../quest_manager/stage.js"
 import { sendRequest } from "../common.js"
 class Quest {
     constructor(author) {
-        this.stages = []
-        this.current_stage_id = null
+        this.stages = {}
+        this.current_stage = null
         this.description = null
         this.author = author
     }
@@ -18,10 +18,10 @@ class Quest {
     * Creates data about new stage
     */
     addStage(data) {
-        let new_stage_id = this.stages.length + 1
-        let new_stage = new Stage(this.current_stage_id, new_stage_id, data)
-        this.stages.push(new_stage)
-        this.current_stage_id = new_stage_id
+        let new_stage_id = Object.keys(this.stages).length + 1
+        let new_stage = new Stage(this.current_stage, new_stage_id, data)
+        this.stages[new_stage_id] = new_stage
+        this.current_stage = new_stage
     }
     /**
      * Packs current quest in dictionary
@@ -37,8 +37,8 @@ class Quest {
             accumulator.push(currentStage.pack())
             return accumulator
         }
-        packed_data.stage_data = this.stages.reduce(reducer, [])
-        // console.log(packed_data)
+        packed_data.stage_data = Object.values(this.stages).reduce(reducer, [])
+        console.log(packed_data)
         return packed_data
     }
     /**

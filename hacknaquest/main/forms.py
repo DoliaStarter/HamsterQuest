@@ -18,6 +18,6 @@ class SignInForm(forms.Form):
 
 
 class SessionManagerMainForm(forms.Form):    
-    photo = forms.ImageField(label='') #widget=forms.ImageField(attrs={'id': 'photo'}))
-    answer = forms.CharField(label='', max_length=100,
+    photo = forms.ImageField(label='', required=False) #widget=forms.ImageField(attrs={'id': 'photo'}))
+    answer = forms.CharField(label='', required=False, max_length=100,
                         widget=forms.TextInput(attrs={'id': 'answer', 'placeholder': 'Answer...'}))
