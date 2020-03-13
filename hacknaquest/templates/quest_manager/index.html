@@ -44,7 +44,7 @@
         $(btn_id).onclick = (_) => Utils.redirect(url)
     }
 
-    let quest = new Quest("some_author")
+    let quest = new Quest(sessionStorage.getItem("username"))
 
     $("stage_description").onsubmit = (e) => {
         e.preventDefault()

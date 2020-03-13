@@ -12,10 +12,15 @@
     Wrong password or login! 
 </div>
 {% endif %}
-<form action="{{ action }}" method="POST">
+<form id="user_info" action="{{ action }}" method="POST">
     <h2>{{ form.action|capfirst }}</h2>
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="{{ form.action|capfirst }}">
 </form>
 {% endblock content %}
+{% block scripts %}
+<script>
+    document.getElementById('user_info').onsubmit = (e) => sessionStorage.setItem('username', e.target.username.value)
+</script
+{% endblock %}

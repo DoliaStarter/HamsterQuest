@@ -7,9 +7,7 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-   
-   
-  
+
     author_rating = models.IntegerField(default=0,
                                         validators=[MinValueValidator(0)],
                                         help_text="Rating of user based on quests he authored")
@@ -17,9 +15,8 @@ class UserProfile(models.Model):
     player_rating = models.IntegerField(default=0,
                                         validators=[MinValueValidator(0)],
                                         help_text="Rating of user based on quests he played")
-  
-    user=models.OneToOneField(User,models.CASCADE)
- 
+
+    user = models.OneToOneField(User, models.CASCADE)
 
 
 class Quests(models.Model):
@@ -80,6 +77,3 @@ class Tags(models.Model):
                                  to_field='id')
     tag_name = models.CharField(max_length=100,
                                 blank=False)
-
-
-
