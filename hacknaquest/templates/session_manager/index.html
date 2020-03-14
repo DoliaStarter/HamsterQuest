@@ -2,99 +2,147 @@
 {% load static %}
 
 {%block styles %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
-<style>
-  .map {
-    height: 400px;
-    width: 100%;
-  }
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css"
+  type="text/css">
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'styles/sm_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/session_manager/sm_style.css' %}">
 {% endblock %}
 
 {% block action_buttons %}
 <button id="user_cabinet">User cabinet</button>
 {% endblock %}
-
-
-
 {% block left_column %}
 
 <div class="row-1">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button id="check_answer" >Submit</button> type="submit"
-    </form>
+  <form id="check_answer" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" />
+  </form>
 </div>
- 
-<div class="row-1">
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Task')" id="defaultOpen">Task</button>
-        <button class="tablinks" onclick="openTab(event, 'Staus')">Status</button>
-        <button class="tablinks" onclick="openTab(event, 'Stages')">Stages</button>
-      </div>
 
-      <div id="Task" class="tabcontent">
-        <h3>Task</h3>
-        <p>Do it</p>
+<div class="row-1">
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Task')" id="defaultOpen">Task</button>
+    <button class="tablinks" onclick="openTab(event, 'Status')">Status</button>
+    <button class="tablinks" onclick="openTab(event, 'Stages')">Stages</button>
+  </div>
+
+  <div id="Task" class="tabcontent">
+    <h2 id="quest_name"></h2>
+    <input id="collapsible" class="toggle" type="checkbox">
+    <label for="collapsible" class="lbl-toggle">More Info</label> 
+    <div class="collapsible-content">
+      <div class="content-inner">
+          <div id="quest_task"></div>
       </div>
-      
-      <div id="Staus" class="tabcontent">
-        <h3>Staus</h3>
-        <p>Did it</p>
-      </div>
-      
-      <div id="Stages" class="tabcontent">
-        <h3>Stages</h3>
-        <p>Will do it</p>
-      </div>
+    </div>
+    <h3 id="task_name"> </h3>
+    <div id="task_field"></div>
+  </div>
+
+  <div id="Status" class="tabcontent">
+    <h3>Stauts</h3>
+    <div id="status_field"></div>
+  </div>
+
+  <div id="Stages" class="tabcontent">
+    <form id="radio_stages" method="POST">
+      {{ radio_stages.as_p }}
+    </form>
+  </div>
 </div>
 
 {% endblock left_column %}
 
-{% block right_column %} 
+{% block right_column %}
 <div id="map" class="map"></div>
-    <script type="text/javascript">
-      var map = new ol.Map({
-        target: 'map',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([19.9365800,  50.0614300]),
-          zoom: 10
-        })
-      });
-    </script>
+<script type="text/javascript">
+  var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([19.9365800, 50.0614300]),
+      zoom: 10
+    })
+  });
+</script>
 {% endblock %}
 {%block scripts %}
 <script src="{% static "scripts/session_manager/sm_script.js" %}"></script>
 <script type="module">
 
-import {redirect} from "{% static 'scripts/common.js' %}"
-import {Answer} from "{% static 'scripts/session_manager/answer.js' %}"
-import {$} from "{% static 'scripts/common.js' %}"
-import * as Utils from "{% static 'scripts/common.js' %}"
-    let redirect_btns = {
-        // btn_id: redirect_url
-        "user_cabinet":"../user_cabinet"
-    };
-    for (let [btn_id, url] of Object.entries(redirect_btns)) {
-        $(btn_id).onclick = (_) => redirect(url)
-    }
-    let answer = new Answer()
+  import { SessionMaintainer, quest_data, getRadioVal, actualRadioButtonInfo, sendDict } from "{% static 'scripts/session_manager/answer.js' %}"
+  import { $, redirect, formToDict } from "{% static 'scripts/common.js' %}"
 
-    $("check_answer").onsubmit = (e) => {
-        e.preventDefault()
-        let form = e.target
-        let data = Utils.formToDict(form)
-        answer.send()
-        }
+  let sessionMaintainer = new SessionMaintainer(/*gui_handlers*/)
 
-</script>  
+  sendDict()
+
+  let stageInfo = actualRadioButtonInfo('stage1')
+  
+
+  $("quest_name").innerHTML = quest_data["quest_title"]
+  $("quest_task").innerHTML = quest_data["quest_description"]
+
+  $("task_name").innerHTML = "<b>" + 'stage1' +"</b>"
+  $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
+  $("status_field").innerHTML = stageInfo['status']
+
+  let myLabels = document.querySelectorAll('.lbl-toggle');
+
+  Array.from(myLabels).forEach(label => {
+    label.addEventListener('keydown', e => {
+      if (e.which === 32 || e.which === 13) {
+        e.preventDefault();
+        label.click();
+      };
+    });
+  });
+  
+  $("id_buttons").onclick = (e) => {
+    let form = e.target
+    var val = getRadioVal($('radio_stages'), 'buttons')
+    let stageInfo = actualRadioButtonInfo(val)
+    console.log(stageInfo)
+    $("task_name").innerHTML = "<b>" + val +"</b>"
+    $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
+    $("status_field").innerHTML = stageInfo['status']
+  }
+
+  $("check_answer").onsubmit = (e) => {
+    e.preventDefault()
+    let form = e.target
+    let data = formToDict(form)
+    sessionMaintainer.check_answer(data)
+    form.reset()
+    sessionMaintainer.send()
+  }
+  
+  //$("stages_list").innerHTML = HTMLStageButtons()
+  
+
+  //$("stages_list").innerHTML
+  /*let gui_handlers = {
+    "task": (data) => $("task_field").innerHTML += "<p>1111</p>",
+    "location": (data) => console.log(`Setting marker for coordinates ${data}`),
+    "status": (data) => $("status_field").innerHTML += data,
+    "is_completed": (data) => console.log(data)
+  }*/
+
+
+  let redirect_btns = {
+    "user_cabinet": "../user_cabinet"
+  };
+
+  for (let [btn_id, url] of Object.entries(redirect_btns)) {
+    $(btn_id).onclick = (_) => redirect(url)
+  }
+  
+
+</script>
 {% endblock %}
-
