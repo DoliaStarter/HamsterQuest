@@ -16,62 +16,56 @@ def index(request):
     }
     return render(request, 'quest_manager/index.html', context)
 
-def create_stage(id,quest,all_stages):   #TO BE MODIFIED!!!!!!!  NEW FORMAT OF !!!!!!!!
-    stage_data=None
-    for i in all_stages:
-        if i['stage_id']==id:
-            stage_data=i
-            break
-    if stage_data==None:
-        print("ERROR, cannot find quest with specified id in dictionary")
-        return 
-    stage_id=stage_data['stage_id']
-    stage_title=stage_data['stage_title']
-    stage_task=stage_data['stage_task']
-    correct_answer=stage_data['correct_answer']
-    stage_location=stage_data["stage_location"]   #MUST BE PARSED TO INT AND LINKED TO STAGE IN THE FUTURE!!!!
-    previous_stage_id=stage_data['previous_stage_id']
-    children=stage_data['children']
+def create_stage(data,quest,):   #TO BE MODIFIED!!!!!!!  NEW FORMAT OF !!!!!!!!
+   
+    stage_id=data['stage_id']
+    stage_title=data['stage_title']
+    stage_task=data['stage_task']
+    correct_answer=data['correct_answer']
+    stage_location=data["stage_location"]   #MUST BE PARSED TO INT AND LINKED TO STAGE IN THE FUTURE!!!!
+    previous_stage_id=data['previous_stage_id']
+    children=data['children']
     
  
     if previous_stage_id!=None:
-         prev =Stages.objects.get(quest_id=quest,id=previous_stage_id)    
+         prev =Stages.objects.get(quest_id=quest,title=previous_stage_id)    
     else:
         prev=None
 
     try:
-        stage=Stages.objects.get(quest_id=quest,previous_stage=prev,id=stage_id,type_of_answer="string") #type_of_answer must be dynamic!!!
+        stage=Stages.objects.get(quest_id=quest,previous_stage=prev,title=stage_id,type_of_answer="string") #type_of_answer must be dynamic!!!
         print("modifying existing node")
     except Stages.DoesNotExist:
-        stage=Stages(quest_id=quest,previous_stage=prev,id=stage_id,type_of_answer="string") #type_of_answer must be dynamic!!!
+        if prev!=None:
+           stage=Stages(quest_id=quest,title=stage_id,type_of_answer="string") #type_of_answer must be dynamic!!!
+           stage.previous_stage=prev
+        else:
+            stage=Stages(quest_id=quest,title=stage_id,type_of_answer="string") #type_of_answer must be dynamic!!!
         print("created node")
 
+    modified=[stage_id]
     stage.title=stage_title
     stage.task=stage_task
     stage.answer=correct_answer            
     stage.save()
-   
-    mega_children=[]    # to be deleted
     for child in children:
-       print("started recurent task #"+str(i))
-       mega_children.extend(create_stage(child,quest,all_stages))
-    return children
-
-
+        print("Апасна рикурсия")
+        modified.extend(create_stage(child,quest))
+ 
+   
+    return modified
 
 
 @csrf_exempt
 def create_quest(request):
-    if ( not request.user.is_authenticated): return   #кибербезопасноть так сказатб
+    if ( not request.user.is_authenticated): 
+        print("попытка взлома так сказатб")
+        return   #кибербезопасноть так сказатб
     
     data = loads(request.body)
-
+    print(data)
     quest_id=data['quest_id']
-    username=data['creator']
     quest_data=data['quest_data']
-
-    stages_data=data['stage_data']
-
     title=quest_data['quest_title']
     description=quest_data['quest_description']
     player_amount=quest_data['player_amount']
@@ -103,23 +97,13 @@ def create_quest(request):
              ID_IN_DB.append(tmp.id)
     
 
-    modified=[]
     
-    for tmp in stages_data:    #SEND ID OF ROOOOOOOT !!!!!!! for optimissation
-        
-        if tmp['previous_stage_id']==None:
-            modified.extend(create_stage(tmp['stage_id'],quest,stages_data))
-            modified.append(tmp['stage_id'])
+    stages=data['stage_tree']
+    modified=create_stage(stages,quest)
+    
    
-    
-    for tmp in stages_data:
-        if tmp['previous_stage_id']!=None and tmp['stage_id'] not in modified:
-           modified.extend(create_stage(tmp['stage_id'],quest,stages_data))
-           modified.append(tmp['stage_id'])
-
-    print(ID_IN_DB)
     to_delete= list(set(ID_IN_DB) -set(modified))
-    print(to_delete)
+    
     for i in to_delete:
         print(i)
         instance = Stages.objects.get(id=i,quest_id=quest)

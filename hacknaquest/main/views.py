@@ -33,7 +33,7 @@ def register(request):
             user_profile.player_rating = 0
             user_profile.user = user
             user_profile.save()
-
+            login(request,user)
             return HttpResponseRedirect('user_cabinet/')
         else:
             print(user_form.errors)
