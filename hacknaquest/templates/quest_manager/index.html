@@ -15,28 +15,38 @@
         </button>
 </form>
 {% endblock %}
+
+{% block center %}
+<div id="tree_container">
+</div>
+{% endblock %}
+
 {% block right_column %}
 <form id="stage_description">
         {{ stage_form }}
     <button>
-        Add next stage
+        Save stage
     </button>    
-
 </form>
 <div class="option-buttons">
+    <button id="add_stage">
+        Add next stage
+    </button>
+
     <button>
         Delete current stage
-    </button>
-    <button>
-        Save current stage
     </button>
 </div>
 {% endblock %}
 {% block scripts %}
+{% comment %} Library for tree creation {% endcomment %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
 <script type="module">
     import {Quest} from "{% static 'scripts/quest_manager/quest.js' %}"
+    import {QuestGui} from "{% static 'scripts/quest_manager/gui_updater.js' %}"
     import {$} from "{% static 'scripts/common.js' %}"
-    import * as Utils from "{% static 'scripts/common.js' %}"
+    import {formToDict} from "{% static 'scripts/common.js' %}"
      let redirect_btns = {
         "user_cabinet":"../user_cabinet"
     };
@@ -44,22 +54,35 @@
         $(btn_id).onclick = (_) => Utils.redirect(url)
     }
 
-    let quest = new Quest(sessionStorage.getItem("username"))
+    let stage_monitor = {
+        'stage_title': $('id_stage_title'),
+        'stage_task': $('id_stage_task'),
+        'stage_location': $('id_stage_location'),
+        'correct_answer': $('id_correct_answer')
+    }
 
+    //TODO change on events
+    let gui = new QuestGui($('tree_container'), stage_monitor)
+    let quest = new Quest(sessionStorage.getItem("username"), gui)
+    gui.assignQuest(quest)
+    
+    $("add_stage").onclick = (e) => {
+        $("stage_description").reset()
+    }
     $("stage_description").onsubmit = (e) => {
         e.preventDefault()
         let form = e.target
-        let data = Utils.formToDict(form)
+        let data = formToDict(form)
         quest.addStage(data)
-        form.reset()
     }
 
     $("quest_form").onsubmit = (e) => {
         e.preventDefault()
         let form = e.target
-        let data = Utils.formToDict(form)
+        let data = formToDict(form)
         quest.addDescription(data)
         quest.send()
+        form.reset()
         }
 </script>
 {% endblock %}
