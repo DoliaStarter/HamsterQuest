@@ -25,7 +25,7 @@ class Quest {
         // refers to keys
         if(new_stage_id in this.stages) 
         {
-            console.log("Already created")
+            alert("Quest already created! ")
             return
         }
         // Object.keys(this.stages).length + 1
@@ -35,25 +35,6 @@ class Quest {
         this.current_stage = new_stage
         this.gui.update()
     }
-    /**
-     * Packs current quest in dictionary
-     */
-    pack_as_simplified_tree() {
-        let packed_data = {
-            "quest_id": null,
-            "creator": this.author,
-            "quest_data": this.description,
-            "stage_data": []
-        }
-        const reducer = (accumulator, currentStage) => {
-            accumulator.push(currentStage.pack())
-            return accumulator
-        }
-        packed_data.stage_data = Object.values(this.stages).reduce(reducer, [])
-        // console.log(packed_data)
-        return packed_data
-    }
-
     activate(node) {
         this.current_stage = this.stages[node.stage_id]
         /**fix */
@@ -62,12 +43,6 @@ class Quest {
 
     pack_as_tree() {
         let tree = Stage.to_tree(this.root)
-        let quest_params = {
-            "quest_id": null,
-            "creator": this.author,
-            "quest_data": this.description,
-        }
-        Object.assign(tree, quest_params)
         return tree
     }
     /**
@@ -81,9 +56,16 @@ class Quest {
     * Sends data to server
     */
     send() {
-        let data = this.pack_as_tree()
+        let stage_tree = this.pack_as_tree()
+        let quest_params = {
+            "quest_id": null,
+            "creator": this.author,
+            "quest_data": this.description,
+            "stage_tree": stage_tree
+        }
+        console.log(quest_params)
         let url = "create_quest"
-        sendRequest(url, data, "POST")
+        sendRequest(url, quest_params, "POST")
 
     }
 }

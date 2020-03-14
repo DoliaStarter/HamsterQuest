@@ -2,9 +2,10 @@ from django import forms
 
 
 class QuestForm(forms.Form):
+    attrs={'autocomplete':'off'}
     quest_title = forms.CharField(label="Title")
     quest_description = forms.CharField(label="Description")
-    player_amount = forms.CharField(label="Number of players")
+    player_amount = forms.IntegerField(label="Number of players")
 
 
 class StageForm(forms.Form):
