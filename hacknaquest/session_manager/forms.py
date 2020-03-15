@@ -18,7 +18,7 @@ DATA = {
             }
         },
         'stage2': {
-            'task': 'task',
+            'task': 'some task for stage 2',
             'location': 'location',
             'status': 'status',
             'is_completed': 'False',
@@ -28,7 +28,7 @@ DATA = {
             }
         },
         'stage3': {
-            'task': 'task',
+            'task': 'some task for stage 3',
             'location': 'location',
             'status': 'status',
             'is_completed': 'False',
