@@ -1,0 +1,165 @@
+.col-2{
+  margin: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  height: 85vh;    
+}
+.col-2:nth-child(1){
+  width: 25%;
+}
+.col-2:nth-child(2){
+  width: 75%;
+}
+.row-1 form{
+  position: relative;
+  margin: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+form *{
+  margin: 10px ;
+  text-align: left;
+  color: gray;
+}
+
+#Task{
+  position: relative;
+  display: flex;
+  /*TODO normal height!!!*/
+  height: 54vh;
+  overflow-y: scroll;
+}
+
+/* Style the tab */
+ .tab {
+  position: relative;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  width: 100%;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  /*border: 1px solid #ccc;
+  border-top: none;*/
+} 
+
+
+/* Map */
+.map {
+  height: 100%;  
+  width: 100%;   
+ }
+
+ h2 {
+  text-transform:uppercase
+ }
+
+ ul{
+  list-style-type: none;
+ }
+
+ /*Collapsing button*/
+.wrap-collabsible {
+  margin-bottom: 1.2rem 0;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+.lbl-toggle {
+  display: block;
+
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  /*padding: 1rem;*/
+
+  color:  rgba(36, 20, 73, 0.918);
+  background: rgba(47, 91, 121, 0.815);
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+  color: rgba(13, 58, 58, 0.644);
+}
+
+.lbl-toggle::before {
+  content: ' ';
+  display: inline-block;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: .7rem;
+  transform: translateY(-2px);
+
+  transition: transform .2s ease-out;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 100vh;
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+  background: rgba(250, 224, 66, .2);
+  border-bottom: 1px solid rgba(250, 224, 66, .45);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: .5rem 1rem;
+}
