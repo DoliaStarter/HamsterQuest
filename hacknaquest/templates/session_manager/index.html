@@ -73,19 +73,26 @@
 </script>
 {% endblock %}
 {%block scripts %}
+
 <script src="{% static "scripts/session_manager/sm_script.js" %}"></script>
 <script type="module">
 
-  import { SessionMaintainer, quest_data, getRadioVal, actualRadioButtonInfo, sendDict } from "{% static 'scripts/session_manager/answer.js' %}"
+  import { SessionMaintainer, getRadioVal, actualRadioButtonInfo } from "{% static 'scripts/session_manager/answer.js' %}"
   import { $, redirect, formToDict } from "{% static 'scripts/common.js' %}"
 
-  let sessionMaintainer = new SessionMaintainer(/*gui_handlers*/)
+  // Get quest data from views and convert to JSON
+  let quest_data = '{{ quest_data }}'
+  quest_data = quest_data.replace(/&#x27;/g, "\"");
+  console.log(quest_data)
+  quest_data = JSON.parse(quest_data);
+  console.log(quest_data)
 
-  sendDict()
+  // Class which manage session
+  let sessionMaintainer = new SessionMaintainer(quest_data)
 
   let stageInfo = actualRadioButtonInfo('stage1')
   
-
+  // Put information from JSON(database) to their places
   $("quest_name").innerHTML = quest_data["quest_title"]
   $("quest_task").innerHTML = quest_data["quest_description"]
 
@@ -93,6 +100,7 @@
   $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
   $("status_field").innerHTML = stageInfo['status']
 
+  // Helper for expanded block with quest information
   let myLabels = document.querySelectorAll('.lbl-toggle');
 
   Array.from(myLabels).forEach(label => {
@@ -104,6 +112,7 @@
     });
   });
   
+  // Change info if you change stage
   $("id_buttons").onclick = (e) => {
     let form = e.target
     var val = getRadioVal($('radio_stages'), 'buttons')
@@ -114,6 +123,7 @@
     $("status_field").innerHTML = stageInfo['status']
   }
 
+  // Chceck your answer TODO make it work normal
   $("check_answer").onsubmit = (e) => {
     e.preventDefault()
     let form = e.target
@@ -123,17 +133,6 @@
     sessionMaintainer.send()
   }
   
-  //$("stages_list").innerHTML = HTMLStageButtons()
-  
-
-  //$("stages_list").innerHTML
-  /*let gui_handlers = {
-    "task": (data) => $("task_field").innerHTML += "<p>1111</p>",
-    "location": (data) => console.log(`Setting marker for coordinates ${data}`),
-    "status": (data) => $("status_field").innerHTML += data,
-    "is_completed": (data) => console.log(data)
-  }*/
-
 
   let redirect_btns = {
     "user_cabinet": "../user_cabinet"
@@ -142,7 +141,6 @@
   for (let [btn_id, url] of Object.entries(redirect_btns)) {
     $(btn_id).onclick = (_) => redirect(url)
   }
-  
 
 </script>
 {% endblock %}

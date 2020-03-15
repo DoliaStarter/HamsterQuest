@@ -1,52 +1,12 @@
 import { sendRequest } from "../common.js"
 
-let quest_data = {
-    "quest_title": "cool quest",
-    "quest_description": "Lorem ipsum dolor sit amet,consectetur adipiscing elit. Pellentesque lectus mi, mollis id tincidunt ac, mattis sed magna. Nullam euismod quam eu auctor sodales. Fusce libero tortor, vulputate sit amet euismod sed, commodo nec justo. Nam sodales tortor in ex fermentum, in semper nisl lobortis. Ut elementum tristique velit at fermentum. Quisque eu eros egestas, placerat enim non, laoreet ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer sit amet hendrerit turpis. ",
-    "author": "A writer",
-    "stages": {
-        "stage1": {
-            "task": "some task",
-            "location": "12.0444404;12.4564888",
-            "status": "actual queststate", // not stareted, started, completed
-            "is_completed": false,
-            "answers": {
-                // correct answer: next stage
-                "42": "stage2",
-                "answer": "stage3",
-            }
-        },
-        "stage2": {
-            "task": "task",
-            "location": "location",
-            "status": "status",
-            "is_completed": false,
-            "answers": {
-                // If null ->  finish quest
-                "10": "stage1",
-                "23": null
-            }
-        },
-        "stage3": {
-            "task": "task",
-            "location": "location",
-            "status": "status",
-            "is_completed": false,
-            "answers": {
-                "10": "stage1",
-                "11": null
-            }
-        }
-    }
-}
-
+let quest_data = {}
 
 class SessionMaintainer {
-    constructor(/*gui*/) {
-        //this.gui = gui 
-        //this.text_ans = gui.text_ans
-        this.stages = quest_data["stages"]
-        this.current_stage = this.stages["stage1"]
+    constructor(data) {
+        quest_data = data
+        this.stages = quest_data['stages']
+        this.current_stage = this.stages['stage1']
         this.finished = {
             "text": " Congatulations !"
         }
@@ -76,9 +36,9 @@ class SessionMaintainer {
             "username": user,
             "text": this.text_ans
         }
-
         return answer_pack
     }
+
     /**
      * @param {string} answer - users answer on quest
      */
@@ -99,16 +59,6 @@ class SessionMaintainer {
         let url = "get_answer"
         sendRequest(url, data, "POST")
     }
-
-    //TODO getData(){}
-    //TODO checkAnswer(){}
-    //TODO activateStage(){}
-}
-
-function sendDict(){
-    let data = quest_data['stages']
-    let url = "get_data"
-    sendRequest(url, data, "POST")
 }
 
 /**
@@ -140,4 +90,4 @@ function actualRadioButtonInfo(radioVal){
 }
 
 
-export { SessionMaintainer, quest_data, getRadioVal, actualRadioButtonInfo, sendDict}
+export { SessionMaintainer, getRadioVal, actualRadioButtonInfo}
