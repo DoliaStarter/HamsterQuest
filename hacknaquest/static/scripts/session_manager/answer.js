@@ -43,14 +43,17 @@ class SessionMaintainer {
      * @param {string} answer - users answer on quest
      */
     check_answer(answer) {
+        console.log("Start checking answer")
+        console.log(this.current_stage)
         let answers = Object.keys(this.current_stage.answers)
         if (answers.includes(answer["answer"])) {
+            // Static field ??
+            console.log(this.current_stage.task)
+
             let next_stage = this.current_stage.answers["answer"]
-            console.log("next_stage")
-            console.log(this.current_stage.answers)
             this.current_stage = this.stages[next_stage] || this.finished
-            console.log("this.current_stage")
-            console.log(this.current_stage)
+            // No redirecting ?
+            console.log(this.current_stage.task)
             //updateData()
         }
     }
@@ -63,13 +66,13 @@ class SessionMaintainer {
 
 /**
  * 
- * @param {Document.getElementBy*} form - get form where radiobuttons is
+ * @param {Element} form - get form where radiobuttons is
  * @param {string} name - will check radio buttons only with same names
  */
 function getRadioVal(form, name) {
     var val;
     var radios = form.elements[name];
-    
+    // Find smarter solution
     for (var i=0, len=radios.length; i<len; i++) {
         if ( radios[i].checked ) { 
             val = radios[i].value; 

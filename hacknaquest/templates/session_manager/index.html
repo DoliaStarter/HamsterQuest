@@ -13,19 +13,19 @@
 {% endblock %}
 {% block left_column %}
 
-<div class="row-1">
+<div class="row">
   <form id="check_answer" method="POST">
     {% csrf_token %}
     {{ form }}
     <input type="submit" />
   </form>
 </div>
+<div class="row">
 
-<div class="row-1">
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Task')" id="defaultOpen">Task</button>
-    <button class="tablinks" onclick="openTab(event, 'Status')">Status</button>
-    <button class="tablinks" onclick="openTab(event, 'Stages')">Stages</button>
+    <button class="tablinks"   id="defaultOpen">Task</button>
+    <button class="tablinks" id="statusBtn">Status</button>
+    <button class="tablinks" id="stageBtn">Stages</button>
   </div>
 
   <div id="Task" class="tabcontent">
@@ -74,19 +74,24 @@
 {% endblock %}
 {%block scripts %}
 
-<script src="{% static "scripts/session_manager/sm_script.js" %}"></script>
+{% comment %} <script src="{% static "scripts/session_manager/sm_script.js" %}"></script> {% endcomment %}
 <script type="module">
 
   import { SessionMaintainer, getRadioVal, actualRadioButtonInfo } from "{% static 'scripts/session_manager/answer.js' %}"
   import { $, redirect, formToDict } from "{% static 'scripts/common.js' %}"
-
-  // Get quest data from views and convert to JSON
+  import { createExpandingMenu, updateTaskInfo, process_django_dict, openTab } from "{% static 'scripts/session_manager/sm_script.js' %}"
+  
+  
+  // Get quest data from views and convert from JSON
   let quest_data = '{{ quest_data }}'
+  quest_data = process_django_dict(quest_data)
+  {% comment %} console.log(quest_data)
+  
   quest_data = quest_data.replace(/&#x27;/g, "\"");
   console.log(quest_data)
   quest_data = JSON.parse(quest_data);
   console.log(quest_data)
-
+ {% endcomment %}
   // Class which manage session
   let sessionMaintainer = new SessionMaintainer(quest_data)
 
@@ -95,32 +100,28 @@
   // Put information from JSON(database) to their places
   $("quest_name").innerHTML = quest_data["quest_title"]
   $("quest_task").innerHTML = quest_data["quest_description"]
-
+  updateTaskInfo(stageInfo, quest_data)
+  {% comment %} 
   $("task_name").innerHTML = "<b>" + 'stage1' +"</b>"
   $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
-  $("status_field").innerHTML = stageInfo['status']
+  $("status_field").innerHTML = stageInfo['status'] 
+  {% endcomment %}
 
   // Helper for expanded block with quest information
-  let myLabels = document.querySelectorAll('.lbl-toggle');
+  createExpandingMenu('.lbl-toggle')
 
-  Array.from(myLabels).forEach(label => {
-    label.addEventListener('keydown', e => {
-      if (e.which === 32 || e.which === 13) {
-        e.preventDefault();
-        label.click();
-      };
-    });
-  });
   
   // Change info if you change stage
   $("id_buttons").onclick = (e) => {
     let form = e.target
     var val = getRadioVal($('radio_stages'), 'buttons')
     let stageInfo = actualRadioButtonInfo(val)
-    console.log(stageInfo)
-    $("task_name").innerHTML = "<b>" + val +"</b>"
-    $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
-    $("status_field").innerHTML = stageInfo['status']
+    updateTaskInfo(stageInfo, quest_data)
+///
+
+ //   $("task_name").innerHTML = "<b>" + val +"</b>"
+ //   $("task_field").innerHTML = stageInfo['task'] + "<br><i>" + quest_data['author'] + "</i></br>"
+ //   $("status_field").innerHTML = stageInfo['status']
   }
 
   // Chceck your answer TODO make it work normal
@@ -141,6 +142,18 @@
   for (let [btn_id, url] of Object.entries(redirect_btns)) {
     $(btn_id).onclick = (_) => redirect(url)
   }
+
+  let tab_params = {
+    // btn : open_tab
+    'defaultOpen': 'Task',
+    'statusBtn': 'Status',
+    'stageBtn': 'Stages' 
+  }
+
+  for (let [btn_id, tab] of Object.entries(tab_params)) {
+    $(btn_id).onclick = (e) => openTab(e, tab)
+  }
+  document.getElementById("defaultOpen").click();
 
 </script>
 {% endblock %}

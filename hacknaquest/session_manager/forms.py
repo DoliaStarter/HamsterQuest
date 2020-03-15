@@ -8,7 +8,7 @@ DATA = {
     'author': 'A writer',
     'stages': {
         'stage1': {
-            'task': 'some task',
+            'task': 'The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.The export statement is used when creating JavaScript modules to export functions, objects, or primitive values from the module so they can be used by other programs with the import statement.Exported modules are in strict mode whether you declare them as such or not. The export statement cannot be used in embedded scripts.',
             'location': '12.0444404;12.4564888',
             'status': 'actual queststate', 
             'is_completed': 'False',
@@ -18,7 +18,7 @@ DATA = {
             }
         },
         'stage2': {
-            'task': 'task',
+            'task': 'some task for stage 2',
             'location': 'location',
             'status': 'status',
             'is_completed': 'False',
@@ -28,7 +28,7 @@ DATA = {
             }
         },
         'stage3': {
-            'task': 'task',
+            'task': 'some task for stage 3',
             'location': 'location',
             'status': 'status',
             'is_completed': 'False',
