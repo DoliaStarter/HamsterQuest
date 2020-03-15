@@ -12,6 +12,7 @@ document.getElemendById(ID)
 $(ID)
 ```
 ## redirect
+
 Перенаправляет пользователя на поданый адрес
 
 ## sendRequest
@@ -19,6 +20,7 @@ $(ID)
 Эта функция отправляет запрос на поданный url.
 
 # Зависимости
+
 Чтобы установить все зависимости.
 ```
 pip install -r requirements.txt
