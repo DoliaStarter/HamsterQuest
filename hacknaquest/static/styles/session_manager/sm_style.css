@@ -6,11 +6,13 @@
 }
 .col-2:nth-child(1){
   width: 25%;
+  display: flex;
+  flex-direction: column;
 }
 .col-2:nth-child(2){
   width: 75%;
 }
-.row-1 form{
+.row form{
   position: relative;
   margin: 5px;
   border: 1px solid lightgray;
@@ -26,12 +28,15 @@ form *{
   color: gray;
 }
 
+.row:nth-child(2){
+  overflow-y: scroll;
+}
 #Task{
   position: relative;
   display: flex;
   /*TODO normal height!!!*/
-  height: 54vh;
-  overflow-y: scroll;
+  /* height: 54vh;
+  overflow-y: scroll; */
 }
 
 /* Style the tab */
