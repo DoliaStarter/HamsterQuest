@@ -26,9 +26,14 @@ form *{
   color: gray;
 }
 
+.row:nth-child(1){
+  height: 50vh;
+}
 #Task{
   position: relative;
   display: flex;
+  height: 50vh;
+
   /*TODO normal height!!!*/
   height: 54vh;
   overflow-y: scroll;
@@ -71,6 +76,9 @@ form *{
 .tabcontent {
   display: none;
   padding: 6px 12px;
+  overflow-y: scroll;
+  min-height: 60vh;
+
   /*border: 1px solid #ccc;
   border-top: none;*/
 } 

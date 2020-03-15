@@ -4,11 +4,11 @@ import json
 
 DATA = {
     'quest_title': 'cool quest',
-    'quest_description': 'Lorem ipsum dolor',
+    'quest_description': 'A self-study educational resource which covers both the theory and practice of Bluetooth mesh device software development. By working through its coding exercises, you’ll develop a working mesh network, with devices acting as an on/off switch, a lighting colour selector and as a coloured LED light. You’ll learn about a variety of Bluetooth mesh models and cement your understanding by implementing these models using the SDK for the Zephyr RTOS.',
     'author': 'A writer',
     'stages': {
         'stage1': {
-            'task': 'some task',
+            'task': 'A self-study educational resource which covers both the theory and practice of Bluetooth mesh device software development. By working through its coding exercises, you’ll develop a working mesh network, with devices acting as an on/off switch, a lighting colour selector and as a coloured LED light. You’ll learn about a variety of Bluetooth mesh models and cement your understanding by implementing these models using the SDK for the Zephyr RTOS.A self-study educational resource which covers both the theory and practice of Bluetooth mesh device software development. By working through its coding exercises, you’ll develop a working mesh network, with devices acting as an on/off switch, a lighting colour selector and as a coloured LED light. You’ll learn about a variety of Bluetooth mesh models and cement your understanding by implementing these models using the SDK for the Zephyr RTOS.A self-study educational resource which covers both the theory and practice of Bluetooth mesh device software development. By working through its coding exercises, you’ll develop a working mesh network, with devices acting as an on/off switch, a lighting colour selector and as a coloured LED light. You’ll learn about a variety of Bluetooth mesh models and cement your understanding by implementing these models using the SDK for the Zephyr RTOS.A self-study educational resource which covers both the theory and practice of Bluetooth mesh device software development. By working through its coding exercises, you’ll develop a working mesh network, with devices acting as an on/off switch, a lighting colour selector and as a coloured LED light. You’ll learn about a variety of Bluetooth mesh models and cement your understanding by implementing these models using the SDK for the Zephyr RTOS.',
             'location': '12.0444404;12.4564888',
             'status': 'actual queststate', 
             'is_completed': 'False',
