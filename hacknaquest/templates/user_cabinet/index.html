@@ -89,7 +89,7 @@
         // btn_id: redirect_url
         "current_game":"../session_manager",
         "create_quest":"../quest_manager",
-        "search_quests":"../search_quests"
+        "search_quests":"./search_quests"
     };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
         $(btn_id).onclick = (_) => redirect(url)
