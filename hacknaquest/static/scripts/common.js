@@ -52,14 +52,14 @@ function sendRequest(url, data, method) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 if (method == "GET") {
-                    let result = JSON.parse(xhr.responseText);
+                    result = JSON.parse(xhr.responseText)
                     resolve(result)
                 } else {
                     resolve();
                 }
             }
             else if (xhr.readyState == XMLHttpRequest.DONE) {
-                let response = JSON.parse(xhr.responseText);
+                var response = JSON.parse(xhr.responseText)
                 alert(response.message)
             }
         };
