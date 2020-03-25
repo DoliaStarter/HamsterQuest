@@ -25,5 +25,5 @@ urlpatterns = [
     path('session_manager/', include('session_manager.urls')),
     path('quest_manager/', include('quest_manager.urls')),
     path('session_daemon/', include('session_daemon.urls')),
-    path('user_cabinet/', include('user_cabinet.urls'))
+    path('user_cabinet/', include('user_cabinet.urls')),
 ]

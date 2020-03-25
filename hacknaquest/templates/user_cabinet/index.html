@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'styles/user_cabinet.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/user_cabinet/user_cabinet.css'%}">
 {% endblock %}
 
 
@@ -53,8 +53,9 @@
 
     <div id="achievements">
 
-        <h2>Player Achievements</h2>
+
         <div id="player_achievements">
+            <h2>Player Achievements</h2>
             <img id="ach1" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
             <img id="ach2" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
             <img id="ach3" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
@@ -62,8 +63,9 @@
             <img id="ach5" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
         </div>
 
-        <h2>Creator Achievements</h2>
+
         <div id="creator_achievements">
+            <h2>Creator Achievements</h2>
             <img id="cach1" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
             <img id="cach2" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
             <img id="cach3" class="not_completed" src="{% static 'images/cup.png' %}" alt=""/>
@@ -86,7 +88,8 @@
     let redirect_btns = {
         // btn_id: redirect_url
         "current_game":"../session_manager",
-        "create_quest":"../quest_manager"
+        "create_quest":"../quest_manager",
+        "search_quests":"./search_quests"
     };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
         $(btn_id).onclick = (_) => redirect(url)
