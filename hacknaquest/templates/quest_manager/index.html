@@ -45,13 +45,12 @@
 <script type="module">
     import {Quest} from "{% static 'scripts/quest_manager/quest.js' %}"
     import {QuestGui} from "{% static 'scripts/quest_manager/gui_updater.js' %}"
-    import {$} from "{% static 'scripts/common.js' %}"
-    import {formToDict} from "{% static 'scripts/common.js' %}"
+    import {$, formToDict, redirect} from "{% static 'scripts/common.js' %}"
      let redirect_btns = {
         "user_cabinet":"../user_cabinet"
     };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
-        $(btn_id).onclick = (_) => Utils.redirect(url)
+        $(btn_id).onclick = (_) => redirect(url)
     }
 
     let stage_monitor = {
@@ -78,7 +77,9 @@
 
     $("quest_form").onsubmit = (e) => {
         e.preventDefault()
+        gui.prepareSurfaceForTree()
         let form = e.target
+         $("stage_description").reset()
         let data = formToDict(form)
         quest.addDescription(data)
         quest.send()

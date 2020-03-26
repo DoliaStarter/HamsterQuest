@@ -41,8 +41,9 @@ class QuestGui {
             .attr('y2', function (d) { return d.target.y; });
 
     }
-    prepareSurfaceForTree(surface) {
-        surface.innerHTML = `
+    prepareSurfaceForTree() {
+        console.log('here')
+        this.tree_surface.innerHTML = `
         <svg width="${this.tr_width}" height="${this.tr_height + 100}">
         <g transform="translate(5, 5)">
           <g class="links"></g>
@@ -57,7 +58,7 @@ class QuestGui {
         }
     }
     update() {
-        this.prepareSurfaceForTree(this.tree_surface)
+        this.prepareSurfaceForTree()
         let tree = this.generateTree()
         this.drawTree(tree, (node) => this.quest.activate(node.data))
     }
