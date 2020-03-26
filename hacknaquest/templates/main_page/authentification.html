@@ -5,6 +5,18 @@
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static "styles/main_page/auth.css" %}">
 {% endblock %}
+{% block action_buttons %}
+<button id="main_page">
+    Main page
+</button>
+<button id="sign_in">
+    Sign in
+</button>
+<button id="create_account">
+    Create an account
+</button>
+
+{% endblock %}
 
 {% block content %}
 {% if failed %}
@@ -20,7 +32,19 @@
 </form>
 {% endblock content %}
 {% block scripts %}
-<script>
+<script type="module">
     document.getElementById('user_info').onsubmit = (e) => sessionStorage.setItem('username', e.target.username.value)
+    import {$} from "{% static 'scripts/common.js' %}"
+    import * as CommUtils from "{% static 'scripts/common.js' %}"
+    let redirect_btns = {
+        // btn_id: redirect_url
+        "sign_in": "sign_in",
+        "create_account": "register",
+        "main_page": "../"
+    }
+
+    for(let [btn_id, url] of Object.entries(redirect_btns)){
+        $(btn_id).onclick = (_) => CommUtils.redirect(url)
+    }
 </script
 {% endblock %}
