@@ -11,10 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -86,12 +85,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 #        'PORT': '5432',
 #    }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Password validation
@@ -131,3 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATICFILES_DIRS = ["static"]
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
+DATABASES = {
+    'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'evqdpnii',
+       'USER': 'evqdpnii',
+       'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
+       'HOST': 'dumbo.db.elephantsql.com',
+       'PORT': '5432'
+    }
+}

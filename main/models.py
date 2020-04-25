@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.contrib.auth.models import User
-# If no primary key doesn't specified in model,
+# If no primary key specified in model,
 # it means, that this field was added b default by django
 # with name 'id' and type Serial.
 

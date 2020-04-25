@@ -9,3 +9,4 @@ hack_env
 *.user
 /hacknaquest/env
 obj/
+venv
