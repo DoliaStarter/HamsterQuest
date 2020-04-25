@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block action_buttons %}
+{% if page_name == 'My quests' %}
+<button id="search_quests">Search quests</button>
+{% elif page_name == 'Search Quests' %}
+<button id="user_quests">My quests</button>
+{% endif %}
 <button id="user_cabinet">User cabinet</button>
 <button id="current_game">Current game</button>
 <button id="create_quest">Create quest</button>
@@ -16,7 +21,7 @@
 <div id="left_col">
     <div class="plate">
         <img id="profile_image" alt="" src="{% static 'images/profile_image.jpg' %}"/>
-        <button class="but" id="change_info">My Quests</button>
+        <h2>{{ username }}</h2>
     </div>
 
     <div class="plate" id="categories">
@@ -78,42 +83,61 @@
             </div>
         </div>
     </div>
-
-
-    {% for quest in quests %}
-    <div class="plate_quest">
-        <div id="plate_quest_left">
-            <img alt="" src="{% static 'images/profile_image.jpg' %}"/>
+<div class="quest_container">
+    {% if quests %}
+        {% for quest in quests %}
+        <div class="plate_quest">
+            <div id="plate_quest_left">
+                <img alt="" src="{% static 'images/profile_image.jpg' %}"/>
+            </div>
+            <div id="plate_quest_center">
+                <h1 id="title">{{quest.title}}</h1>
+                <p>{{quest.description|truncatechars:150}}</p>
+                <p>#tag #tag #tag #tag</p>
+            </div>
+            <div id="plate_quest_right">
+                {% if page_name == 'My quests' %}
+                    <p>Participants number:</p>
+                    <h1>{{quest.player_amount}}</h1>
+                {% elif page_name == 'Search Quests' %}
+                    {% comment %} TODO This value should depend on amount of players, that already applied {% endcomment %}
+                    <h1>{{quest.player_amount}}</h1>
+                    <p>people need more</p>
+                {% endif %}
+            </div>
         </div>
-        <div id="plate_quest_center">
-            <h1>{{quest.title}}</h1>
-            <p>{{quest.description}}</p>
-            <p>#tag #tag #tag #tag</p>
-        </div>
-        <div id="plate_quest_right">
-            <h1>{{quest.player_amount}}</h1>
-            <p>people need more</p>
-        </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %} 
+        <h2> You haven't create any quests yet. </h2>
+    {% endif %}
+</div>
 </div>
 
 {% endblock %}
 {% block scripts %}
 <script type="module">
-    import * as ucUtils from "{% static 'scripts/user_cabinet/index.js' %}"
-
-    document.body.onload = (_) => ucUtils.uc_init();
     import {redirect, $} from "{% static 'scripts/common.js' %}"
-
+    import {assign_redirection_to_quests} from "{% static 'scripts/user_cabinet/index.js' %}"
     let redirect_btns = {
         // btn_id: redirect_url
         "current_game":"../../session_manager",
         "create_quest":"../../quest_manager",
-        "user_cabinet":"../../user_cabinet"
+        "user_cabinet":"../../user_cabinet",
+        "search_quests":"../search_quests",
+        "user_quests":"../user_quests"
     };
+    // describes where user should be redirected after clicking on quest on page
+    let quest_redirection_urls = {
+        //page_name, redirect to 
+        "My quests": "../../quest_manager/quest_editing",
+        "Search Quests": "../quest_description"
+    }
+    let title = document.getElementsByTagName("title")[0].innerHTML
+    document.body.onload = () => assign_redirection_to_quests(quest_redirection_urls[title])
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
-        $(btn_id).onclick = (_) => redirect(url)
+        // Method to check if value returned by $(btn_id) is not null
+        // If so, right part of the expression will not be evaluated
+        $(btn_id) && ($(btn_id).onclick = (_) => redirect(url))
     }
 
 

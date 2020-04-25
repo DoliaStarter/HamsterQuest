@@ -75,18 +75,6 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # Config to access cloud postgres database
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'evqdpnii',
-#        'USER': 'evqdpnii',
-#        'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
-#        'HOST': 'dumbo.db.elephantsql.com',
-#        'PORT': '5432',
-#    }
-# }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -125,14 +113,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATICFILES_DIRS = ["static"]
 STATIC_URL = '/static/'
+
 django_heroku.settings(locals())
 DATABASES = {
+    #   Uncoment to work with cloud db
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'evqdpnii',
-       'USER': 'evqdpnii',
-       'PASSWORD': 'TqrKnWf2hRBpnIkNyOr8NUJDj_31MEEM',
-       'HOST': 'dumbo.db.elephantsql.com',
+       'NAME': 'abmfvjvr',
+       'USER': 'abmfvjvr',
+       'PASSWORD': 'YLLAV9EF1xgJ9y4rnWVf5ZgnwZpV9R91',
+       'HOST': 'rogue.db.elephantsql.com',
        'PORT': '5432'
-    }
+    },
+    #  Uncoment to work with local db
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }

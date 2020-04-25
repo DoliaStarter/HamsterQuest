@@ -8,6 +8,7 @@
 
 {% block action_buttons %}
 <button id="search_quests">Search Quests</button>
+<button id="my_quests">My quests</button>
 <button id="current_game">Current game</button>
 <button id="create_quest">Create quest</button>
 {% endblock %}
@@ -19,7 +20,6 @@
         <h1 align="center">INFO</h1>
         <h1 align="center">ABOUT</h1>
         <h1 align="center">ACTIVE</h1>
-        <h1 align="center">MY QUESTS</h1>
     </div>
 
     <div class="uc_buttons">
@@ -43,7 +43,7 @@
         </div>
         <div id="player_info">
             <div id="info">
-                <p id="nickname"><b>Nickname</b></p>
+                <p id="nickname"><b>{{ username }}</b></p>
                 <p class="lvl">LEVEL:</p>
                 <p class="lvl">CITY:</p>
             </div>
@@ -89,7 +89,8 @@
         // btn_id: redirect_url
         "current_game":"../session_manager",
         "create_quest":"../quest_manager",
-        "search_quests":"./search_quests"
+        "search_quests":"./search_quests",
+        "my_quests": "./user_quests"
     };
     for (let [btn_id, url] of Object.entries(redirect_btns)) {
         $(btn_id).onclick = (_) => redirect(url)

@@ -1,11 +1,12 @@
+import * as common from '../common.js';
+
 let uc_variables = {
-    nickname: "kl@dmen2007",
     profile_image_src: "/static/images/profile_image.jpg",
     user_achievements: "11010",
     creator_achievements: "01000"
 };
 
-function uc_init() {o
+function uc_init() {
     //set profile_image
     let profile_image = document.getElementById("profile_image");
     profile_image.src = uc_variables.profile_image_src;
@@ -24,11 +25,18 @@ function uc_init() {o
             creatorAchievements[i].classList.add('completed');
         }
     }
-    //set nickname
-    let nickname = document.getElementById("nickname");
-    nickname.innerText = uc_variables.nickname;
-
-
 }
 
-export {uc_init}
+
+function assign_redirection_to_quests(redirct_to) {
+    var quests = document.getElementsByClassName("plate_quest")
+    for(var quest of quests) {
+        let title = quest.querySelector("#title").innerHTML
+        
+        quest.onclick = () => {
+            common.redirect(`${redirct_to}?name=${title}`)
+        }
+        
+    }
+}
+export {uc_init, assign_redirection_to_quests}
